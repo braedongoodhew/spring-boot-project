@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<table th:if="${volumeList != null and volumeList != ''}">
+		<tr th:each="s : ${volumeList}">
+			<td th:text="${s.height}">
+			<td th:text="${s.width}">
+			<td th:text="${s.depth}">
+			<td th:text="${s.result}">
+			<td><a th:href="@{/editVolume/}+${s.id}">Edit</a></td>
+			<td><a th:href="@{/deleteVolume/}+${s.id}">Delete</a></td>
+	</table>
+
+	<form method="post" action="" th:action="@{/insertVolume}"
+		th:object="${volume}">
+		<input type="hidden" name="id" th:field="*{id}" /> Height: <input
+			type="number" name="height" th:field="*{height}" /><br> Width:
+		<input type="number" name="width" th:field="*{width}" /><br>
+		Depth: <input type="number" name="depth" th:field="*{depth}" /><br>
+		<input type="submit" value="Calculate Volume!" />
+
+
+	</form>
+
+</body>
+</html>
